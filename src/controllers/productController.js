@@ -91,7 +91,28 @@ const getAllProducts = (req,res) => {
     )
 }
 
-export default getAllProducts;
+const getProductById = (req,res) => {
+    const productId = Number(req.params.id);
+
+    for (const product of products){
+        if (product.id === productId){
+            return res.status(200).json({
+                success:true,
+                data: product
+            });
+        }
+
+    }
+    res.status(404).json({
+        success:false,
+        message:"Product not found"
+    })
+}
+
+export {getAllProducts, getProductById};
+
+
+
 
 
 
